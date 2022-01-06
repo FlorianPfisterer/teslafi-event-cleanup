@@ -40,13 +40,15 @@ for file_name in CSV_FILES:
 print(f'read {len(all_events)} events from {len(CSV_FILES)} files')
 
 # filter events to include only those that have all selected properties
-def filter_predicate(row):
+def remove_unused_properties(row):
+    result = {}
     for property in SELECTED_PROPERTIES:
         if property not in row or row[property] == '':
-            return False
-    return True
-
-filtered_events = list(filter(filter_predicate, all_events))
+            return None
+        result[property] = row[property]   
+    return result
+        
+filtered_events = list(filter(None, map(remove_unused_properties, all_events)))
 print(f'got {len(filtered_events)} events after filtering')
 
 if len(filtered_events) == 0:

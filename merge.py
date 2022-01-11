@@ -1,13 +1,8 @@
 import csv
+import glob
 
-OUT_FILE_NAME = 'drive-events-merged.csv'
-
-CSV_FILES = [
-    'TeslaFi12020.csv',
-    'TeslaFi12021.csv',
-    'TeslaFi22020.csv',
-    'TeslaFi22021.csv',
-]
+OUT_FILE_NAME = 'events-merged-15.csv'
+CSV_FILES = glob.glob('data/*.csv')
 
 SELECTED_PROPERTIES = [
     'Date',
